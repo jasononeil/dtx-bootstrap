@@ -20,10 +20,7 @@ class DropdownButton extends dtx.widget.Widget
 		menu = new DropdownMenu();
 		this.append(btn);
 		this.append(menu);
-	}
-
-	override function init()
-	{
+		
 		// Set up open / close events
 		btn.click(function (e) {
 			// Add the open class...

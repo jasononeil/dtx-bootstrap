@@ -20,10 +20,7 @@ class DropdownMenu extends dtx.widget.Widget
 	public function addDivider()
 	{
 		this.append(new DropdownSeparator());
-	}
-
-	override public function init()
-	{
+		
 		// Set up escape events...
 		Detox.document.click(function (e) {
 			// If they click on any element not inside this dropdown widget, ie - they click outside

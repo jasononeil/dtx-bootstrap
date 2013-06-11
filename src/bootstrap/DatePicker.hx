@@ -32,10 +32,7 @@ class DatePicker extends dtx.widget.Widget
 		dateBtns = getDateButtons();
 		currentView = Month;
 		date = if (d!=null) d else Date.now();
-	}
-
-	override function init()
-	{
+		
 		//
 		// Set up open / close events
 		//

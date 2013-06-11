@@ -36,6 +36,14 @@ class Modal extends dtx.widget.Widget
     this.title = title;
     this.content = content;
     this.width = width;
+
+    acceptBtn.type = Primary;
+    acceptBtn.label = "Save Changes";
+    dismissBtn.label = "Close";
+
+    closeBtn.click(function (e) dismiss());
+    dismissBtn.click(function (e) dismiss());
+    acceptBtn.click(function (e) accept());
   }
 
   function set_width(w:Int)
@@ -44,17 +52,6 @@ class Modal extends dtx.widget.Widget
     else this.setAttr("style", 'display: block; width: ${w}px; margin-left: -${w/2}px');
     
     return width = w;
-  }
-
-  override function init()
-  {
-    acceptBtn.type = Primary;
-    acceptBtn.label = "Save Changes";
-    dismissBtn.label = "Close";
-
-    closeBtn.click(function (e) dismiss());
-    dismissBtn.click(function (e) dismiss());
-    acceptBtn.click(function (e) accept());
   }
 
   public function show()

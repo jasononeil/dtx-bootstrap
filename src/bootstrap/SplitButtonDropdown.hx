@@ -28,10 +28,7 @@ class SplitButtonDropdown extends dtx.widget.Widget
 		this.append(btn);
 		this.append(dropdownBtn);
 		this.append(menu);
-	}
-
-	override function init()
-	{
+		
 		// Set up open / close events
 		dropdownBtn.click(function (e) {
 			// Add the open class...

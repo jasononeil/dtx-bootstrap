@@ -23,11 +23,6 @@ class Button extends dtx.widget.Widget
 		this.disabled = disabled;
 	}
 
-	override function init()
-	{
-		// Check we're setting the icon
-	}
-
 	function set_icon(icon:Icon)
 	{
 		if (icon != null) 
