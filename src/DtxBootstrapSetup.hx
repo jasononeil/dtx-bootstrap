@@ -35,7 +35,7 @@ class DtxBootstrapSetup
 		var t:Tooltip;
 		js.Browser.document.hover("[data-toggle=tooltip]", function (e) {
 			var elm:js.html.Element = cast e.target;
-			t = elm.toDOMNode().tooltip().show();
+			t = elm.tooltip().show();
 		}, function (e) {
 			t.hide();
 		});
