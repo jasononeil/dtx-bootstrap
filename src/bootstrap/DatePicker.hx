@@ -49,7 +49,6 @@ class DatePicker extends dtx.widget.Widget
 		Detox.document.click(function (e) {
 			// If they click on any element not inside this dropdown widget, ie - they click outside
 			var n:dtx.DOMNode = cast e.target;
-			var trigger = this.field;
 			var ancestors = n.ancestors();
 			if (ancestors.has(field.getNode()) == false && ancestors.has(picker.getNode()) == false)
 			{
@@ -154,6 +153,8 @@ class DatePicker extends dtx.widget.Widget
 
 		// Update the view too
 		viewDate = v;
+
+		input.change();
 
 		return date;
 	}
