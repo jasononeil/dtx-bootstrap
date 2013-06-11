@@ -3,7 +3,7 @@ package bootstrap;
 using Detox;
 using Floats;
 
-@useParentTemplate
+@:useParentTemplate
 class IntInput extends NumberInput
 {
 	public function new(min:Int, max:Int, ?step:Int=1, ?start:Int=null, ?placeholder="")

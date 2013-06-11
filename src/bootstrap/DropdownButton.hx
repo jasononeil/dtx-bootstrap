@@ -5,7 +5,7 @@ import bootstrap.Button;
 using Detox;
 using Lambda;
 
-@template('<div class="dropdown">
+@:template('<div class="dropdown">
 </div>')
 class DropdownButton extends dtx.widget.Widget
 {

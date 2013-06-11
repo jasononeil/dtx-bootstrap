@@ -3,7 +3,7 @@ package bootstrap;
 using Detox;
 import js.html.Element;
 
-@template('<div class="tooltip fade in">
+@:template('<div class="tooltip fade in">
 	<div class="tooltip-arrow"><!-- --></div>
 	<div class="tooltip-inner">$text</div>
 </div>')

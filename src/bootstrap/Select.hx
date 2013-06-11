@@ -3,7 +3,7 @@ package bootstrap;
 import haxe.ds.IntMap;
 using Detox;
 
-@template("<select></select>")
+@:template("<select></select>")
 class Select<T> extends dtx.widget.Widget
 {
 	var options:IntMap<Option<T>>;

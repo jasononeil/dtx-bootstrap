@@ -2,7 +2,7 @@ package bootstrap;
 
 using Detox;
 
-@template("<input type='number' min='$min' max='$max' step='$step' placeholder='$placeholder'></input>")
+@:template("<input type='number' min='$min' max='$max' step='$step' placeholder='$placeholder'></input>")
 class NumberInput extends dtx.widget.Widget
 {
 	public var min:Null<Float>;

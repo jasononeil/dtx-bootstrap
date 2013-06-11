@@ -2,7 +2,7 @@ package bootstrap;
 
 using Detox;
 
-@template("<a href='javascript:void(0)' class='btn' title='$tooltip'>$label</a>")
+@:template("<a href='javascript:void(0)' class='btn' title='$tooltip'>$label</a>")
 class Button extends dtx.widget.Widget
 {
 	public var label:String;

@@ -1,10 +1,10 @@
 package bootstrap;
 
 using Detox;
-using ufcommon.util.TimeOfDayTools;
+using ufront.util.TimeOfDayTools;
 using Dates;
 
-@useParentTemplate
+@:useParentTemplate
 class TimeInput extends NumberInput
 {
 	public function new(?min:TimeOfDay=0, ?max:TimeOfDay=86400, ?step:TimeOfDay=300, ?start:TimeOfDay=null, ?placeholder="")

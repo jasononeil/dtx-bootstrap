@@ -4,7 +4,7 @@ using Detox;
 import js.html.Element;
 import bootstrap.Button;
 
-@template('<div role="dialog" tabindex="-1" class="modal hide" style="display: block;">
+@:template('<div role="dialog" tabindex="-1" class="modal hide" style="display: block;">
   <div class="modal-header">
     <button class="close" type="button">×</button>
     <h3>$title</h3>
@@ -116,7 +116,7 @@ class Modal extends dtx.widget.Widget
   function get_closeBtn() return this.find(".close");
 }
 
-@template('<div class="modal-backdrop fade"></div>')
+@:template('<div class="modal-backdrop fade"></div>')
 class ModalBackdrop extends dtx.widget.Widget 
 {
   function new()

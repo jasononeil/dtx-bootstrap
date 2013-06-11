@@ -4,7 +4,7 @@ import js.html.EventListener;
 using Detox;
 using Lambda;
 
-@template('<ul class="dropdown-menu" role="menu"></ul>')
+@:template('<ul class="dropdown-menu" role="menu"></ul>')
 class DropdownMenu extends dtx.widget.Widget
 {
 	public function new()
@@ -37,7 +37,7 @@ class DropdownMenu extends dtx.widget.Widget
 	}
 }
 
-@template('<li><a tabindex="-1" href="javascript:void(0)">$label</a></li>')
+@:template('<li><a tabindex="-1" href="javascript:void(0)">$label</a></li>')
 class DropdownItem extends dtx.widget.Widget 
 {
 	public function new(label:String, ?href:String, ?fn:EventListener)
@@ -54,5 +54,5 @@ class DropdownItem extends dtx.widget.Widget
 	inline function closeMenu(e) this.parent().parent().removeClass("open"); 
 }
 
-@template('<li class="divider"></li>')
+@:template('<li class="divider"></li>')
 class DropdownSeparator extends dtx.widget.Widget {}

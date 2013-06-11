@@ -5,7 +5,7 @@ import bootstrap.Button;
 using Detox;
 using Lambda;
 
-@template('<div class="btn-group">
+@:template('<div class="btn-group">
 </div>')
 class SplitButtonDropdown extends dtx.widget.Widget
 {
