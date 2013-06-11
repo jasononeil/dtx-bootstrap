@@ -29,8 +29,8 @@ class NumberInput extends dtx.widget.Widget
 	function setupEvents()
 	{
 		// Only setup if there is no built in support
-		if (!Modernizr.inputtypes.number)
-		{
+		// if (!Modernizr.inputtypes.number)
+		// {
 			input.keyup(function (e:js.html.KeyboardEvent) {
 				switch (e.keyCode)
 				{
@@ -50,7 +50,7 @@ class NumberInput extends dtx.widget.Widget
 			input.blur(function (e) {
 				set_value(Std.parseFloat(input.val()));
 			});
-		}
+		// }
 	}
 
 	public function inc(?n:Float) changeBy((n != null) ? n : step);
