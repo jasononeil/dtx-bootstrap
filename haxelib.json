@@ -9,6 +9,6 @@
   "version": "0.0.0-alpha.1",
   "url": "https://github.com/jasononeil/dtx-bootstrap",
   "dependencies": {
-    "detox": "0.10.0"
+    "detox": ""
   }
 }
