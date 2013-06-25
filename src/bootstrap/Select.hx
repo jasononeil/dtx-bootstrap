@@ -55,7 +55,8 @@ class Select<T> extends dtx.widget.Widget
 	}
 
 	function get_value() {
-		return options[ select.selectedIndex ].value;
+		var o = options[ select.selectedIndex ];
+		return (o != null) ? o.value : null;
 	}
 
 	function set_value( v ) {
