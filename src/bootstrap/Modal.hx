@@ -13,8 +13,8 @@ import bootstrap.Button;
     $content
   </div>
   <div class="modal-footer">
-    <dtx:Button dtx-name="dismissBtn" label="Close" />
-    <dtx:Button dtx-name="acceptBtn" label="Save Changes" />
+    <dtx:Button dtx-name="dismissBtn" label="\'Close\'" />
+    <dtx:Button dtx-name="acceptBtn" label="\'Save Changes\'" />
   </div>
 </div>')
 
