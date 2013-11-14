@@ -87,7 +87,7 @@ class Modal extends dtx.widget.Widget
 
   public function dismiss()
   {
-    this.trigger("ModalReject");
+    this.trigger("ModalDismiss");
     hide();
     this.trigger("ModalClose");
   }

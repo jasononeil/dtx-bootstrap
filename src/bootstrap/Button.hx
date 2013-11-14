@@ -36,15 +36,10 @@ class Button extends dtx.widget.Widget
 	function set_type(t:ButtonType)
 	{
 		// Remove all other btn-$type classes
-		this.removeClass("btn-primary btn-info btn-success btn-warning btn-danger btn-link");
+		this.removeClass("btn-default btn-primary btn-info btn-success btn-warning btn-danger btn-link");
 
 		// Add the class in the form btn-$type, unless the type is "Default"
-		switch (t)
-		{
-			case Default: // no class to add
-			default: 
-				this.addClass("btn-" + Std.string(t).toLowerCase());
-		};
+		this.addClass("btn-" + Std.string(t).toLowerCase());
 
 		return type = t;
 	}
