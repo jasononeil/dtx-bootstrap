@@ -4,23 +4,42 @@ using Detox;
 import js.html.Element;
 import bootstrap.Button;
 
-@:template('<div role="dialog" tabindex="-1" class="modal hide" style="display: block;">
-  <div class="modal-header">
-    <button class="close" type="button">×</button>
-    <h3>$title</h3>
-  </div>
-  <div class="modal-body">
-    $content
-  </div>
-  <div class="modal-footer">
-    <dtx:Button dtx-name="dismissBtn" label="\'Close\'" />
-    <dtx:Button dtx-name="acceptBtn" label="\'Save Changes\'" />
+// @:template('<div role="dialog" tabindex="-1" class="modal hide" style="display: block;">
+//   <div class="modal-header">
+//     <button class="close" type="button">×</button>
+//     <h3>$title</h3>
+//   </div>
+//   <div class="modal-body">
+//     $content
+//   </div>
+//   <div class="modal-footer" dtx-name="footer">
+//     <dtx:Button dtx-name="dismissBtn" label="\'Close\'" />
+//     <dtx:Button dtx-name="acceptBtn" label="\'Save Changes\'" />
+//   </div>
+// </div>')
+
+@:template('<div role="dialog" tabindex="-1" class="modal hide" aria-labelledby="bootstrap-modal-$modalID-title" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="bootstrap-modal-$modalID-title">$title</h4>
+      </div>
+      <div class="modal-body">
+        $content
+      </div>
+      <div class="modal-footer" dtx-name="footer">
+        <dtx:Button dtx-name="dismissBtn" label="\'Close\'" />
+        <dtx:Button dtx-name="acceptBtn" label="\'Save Changes\'" />
+      </div>
+    </div>
   </div>
 </div>')
 
-
 class Modal extends dtx.widget.Widget
 {
+  static var modalCount = 0;
+
   public var title:String;
   public var content:String;
 
@@ -33,11 +52,12 @@ class Modal extends dtx.widget.Widget
   public function new(?title = "", ?content = "", ?width = null)
   {
     super();
+    this.modalID = Std.string( modalCount++ );
     this.title = title;
     this.content = content;
     this.width = width;
 
-    acceptBtn.type = Primary;
+    acceptBtn.type = Success;
     acceptBtn.label = "Save Changes";
     dismissBtn.label = "Close";
 
@@ -57,7 +77,7 @@ class Modal extends dtx.widget.Widget
   public function show()
   {
     var backdrop = ModalBackdrop.showBackdrop();
-    this.removeClass("out").addClass("fade in");
+    this.removeClass("hide out").addClass("fade in");
     this.appendTo(js.Browser.document.body);
 
     // Events to escape
@@ -97,6 +117,14 @@ class Modal extends dtx.widget.Widget
     this.trigger("ModalAccept");
     hide();
     this.trigger("ModalClose");
+  }
+
+  public function addButton( b:Button, ?pos=-1 ) 
+  {
+    if ( pos==-1 )
+      return this.footer.getNode().append( b );
+    else 
+      return this.footer.children().getNode( pos ).beforeThisInsert( b );
   }
 
   // Set up events that we can listen to...
