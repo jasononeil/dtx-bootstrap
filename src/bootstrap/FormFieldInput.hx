@@ -50,7 +50,7 @@ class FormFieldInput extends dtx.widget.Widget
 		switch (s)
 		{
 			case Default: // no class to add
-			case Large: input.addClass("input-sm");
+			case Large: input.addClass("input-lg");
 			case Small: input.addClass("input-sm");
 		}
 

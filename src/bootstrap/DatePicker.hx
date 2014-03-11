@@ -47,7 +47,7 @@ class DatePicker extends dtx.widget.Widget
 			// If they click on any element not inside this dropdown widget, ie - they click outside
 			var n:dtx.DOMNode = cast e.target;
 			var ancestors = n.ancestors();
-			if (ancestors.has(field.getNode()) == false && ancestors.has(picker.getNode()) == false)
+			if (ancestors.has(field) == false && ancestors.has(picker) == false)
 			{
 				hidePicker();
 			}

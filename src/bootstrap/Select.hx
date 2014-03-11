@@ -8,17 +8,18 @@ import haxe.ds.IntMap;
 using Lambda;
 using Detox;
 
-@:template("<select id='$id' name='$id'></select>")
+@:template("<select id='$id' name='$name'></select>")
 class Select<T> extends dtx.widget.Widget
 {
 	public var value(get,set):T;
 	public var values(get,set):Iterable<T>;
 	public var id:String;
+	public var name:String;
 	public var disabled(default,set):Bool;
+	public var multiple(default,set):Bool;
 
 	var select: #if js SelectElement #else DOMNode #end;
 	var options:Map<Int, Option<T>>;
-	var multiple:Bool;
 
 	/** Given a collection of choices, create a select table that lets you pick one. */
 	public function new(?values:Iterable<T>, ?labels:Iterable<String>, ?multiple=false, ?clickToSelect=false)
@@ -88,6 +89,11 @@ class Select<T> extends dtx.widget.Widget
 	function set_disabled(d:Bool) {
 		if (d) this.setAttr("disabled","disabled") else this.removeAttr("disabled");
 		return disabled = d;
+	}
+
+	function set_multiple(m:Bool) {
+		if (m) this.setAttr("multiple","multiple") else this.removeAttr("multiple");
+		return multiple = m;
 	}
 }
 

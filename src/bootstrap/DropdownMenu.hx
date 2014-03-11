@@ -14,7 +14,7 @@ class DropdownMenu extends dtx.widget.Widget
 
 	public function addItem(name:String, ?href:String, ?fn:EventListener)
 	{
-		this.append(new DropdownItem(name, href, fn));
+		this.append( new DropdownItem(name, href, fn) );
 	}
 
 	public function addDivider()

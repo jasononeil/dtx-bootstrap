@@ -21,21 +21,20 @@ import bootstrap.Button;
 @:template('<div role="dialog" tabindex="-1" class="modal hide" aria-labelledby="bootstrap-modal-$modalID-title" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" aria-hidden="true">×</button>
+      <div class="modal-header" dtx-name="header">
+        <button type="button" class="close" dtx-name="closeBtn" aria-hidden="true">×</button>
         <h4 class="modal-title" id="bootstrap-modal-$modalID-title">$title</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" dtx-name="body">
         $content
       </div>
       <div class="modal-footer" dtx-name="footer">
-        <dtx:Button dtx-name="dismissBtn" label="\'Close\'" />
-        <dtx:Button dtx-name="acceptBtn" label="\'Save Changes\'" />
+        <dtx:Button dtx-name="dismissBtn" label="Close" />
+        <dtx:Button dtx-name="acceptBtn" label="Save Changes" type="$Success" />
       </div>
     </div>
   </div>
 </div>')
-
 class Modal extends dtx.widget.Widget
 {
   static var modalCount = 0;
@@ -43,10 +42,6 @@ class Modal extends dtx.widget.Widget
   public var title:String;
   public var content:String;
 
-  public var header(get,null):DOMCollection;
-  public var closeBtn(get,null):DOMCollection;
-  public var body(get,null):DOMCollection;
-  public var footer(get,null):DOMCollection;
   public var width(default,set):Int;
 
   public function new(?title = "", ?content = "", ?width = null)
@@ -56,11 +51,7 @@ class Modal extends dtx.widget.Widget
     this.title = title;
     this.content = content;
     this.width = width;
-
-    acceptBtn.type = Success;
-    acceptBtn.label = "Save Changes";
-    dismissBtn.label = "Close";
-
+    
     closeBtn.click(function (e) dismiss());
     dismissBtn.click(function (e) dismiss());
     acceptBtn.click(function (e) accept());
@@ -122,7 +113,7 @@ class Modal extends dtx.widget.Widget
   public function addButton( b:Button, ?pos=-1 ) 
   {
     if ( pos==-1 )
-      return this.footer.getNode().append( b );
+      return this.footer.append( b );
     else 
       return this.footer.children().getNode( pos ).beforeThisInsert( b );
   }
@@ -131,14 +122,6 @@ class Modal extends dtx.widget.Widget
   public function onClose(e:js.html.EventListener) this.on("ModalClose", e);
   public function onDismiss(e:js.html.EventListener) this.on("ModalDismiss", e);
   public function onAccept(e:js.html.EventListener) this.on("ModalAccept", e);
-
-  // Events
-  // It would be good to do some events here
-
-  function get_header() return this.find(".modal-header");
-  function get_body() return this.find(".modal-body");
-  function get_footer() return this.find(".modal-footer");
-  function get_closeBtn() return this.find(".close");
 }
 
 @:template('<div class="modal-backdrop fade"></div>')
