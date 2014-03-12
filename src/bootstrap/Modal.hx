@@ -22,7 +22,7 @@ import bootstrap.Button;
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" dtx-name="header">
-        <button type="button" class="close" dtx-name="closeBtn" aria-hidden="true">×</button>
+        <button type="button" class="close" dtx-name="closeBtn" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="bootstrap-modal-$modalID-title">$title</h4>
       </div>
       <div class="modal-body" dtx-name="body">
