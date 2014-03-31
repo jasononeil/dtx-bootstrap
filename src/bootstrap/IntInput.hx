@@ -15,4 +15,9 @@ class IntInput extends NumberInput
 	{
 		return i.format("I");
 	}
+
+	override function parse(i:String):Float
+	{
+		return Std.parseInt(i);
+	}
 }

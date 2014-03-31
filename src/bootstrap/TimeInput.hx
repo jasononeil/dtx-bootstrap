@@ -12,8 +12,11 @@ class TimeInput extends NumberInput
 		super(min, max, step, start, placeholder);
 	}
 
-	override function format(v:Float):String
-	{
+	override function format(v:Float):String {
 		return Std.int(v).timeToString();
+	}
+
+	override function parse(v:String):Float {
+		return Date.fromString( v ).getTime() / 1000;
 	}
 }

@@ -1,5 +1,6 @@
 package bootstrap;
 
+using StringTools;
 using Detox;
 
 @:template("<input type='number' min='$min' max='$max' step='$step' placeholder='$placeholder'></input>")
@@ -34,12 +35,9 @@ class NumberInput extends dtx.widget.Widget
 			input.keyup(function (e:js.html.KeyboardEvent) {
 				switch (e.keyCode)
 				{
-					case 38: // up
-						inc();
-					case 40: // down
-						dec();
+					case 38: inc(); // up
+					case 40: dec(); // down
 					default: 
-						trace (e.keyCode);
 				}
 			});
 			input.wheel(function (e) {
@@ -48,7 +46,8 @@ class NumberInput extends dtx.widget.Widget
 				e.preventDefault();
 			});
 			input.blur(function (e) {
-				set_value(Std.parseFloat(input.val()));
+				var text = input.val().trim();
+				value = parse(text);
 			});
 		// }
 	}
@@ -69,5 +68,6 @@ class NumberInput extends dtx.widget.Widget
 		if (value == null) value = min;
 		set_value(value + i);
 	}
-	function format(i:Float) return Std.string(i);
+	function format(i:Float) return ''+i;
+	function parse(v:String) return Std.parseFloat(v);
 }
