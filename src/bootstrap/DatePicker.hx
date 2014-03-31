@@ -15,7 +15,7 @@ class DatePicker extends dtx.widget.Widget
 	public var date(default,set):Date;
 
 	/** Start day of week.  Sunday=0, Saturday=6 */
-	public var startDOW = 0;
+	public var startDOW:Weekday;
 
 	/** Do we close the datepicker after a date has been selected? */
 	public var closeOnSelect = true;
@@ -26,6 +26,7 @@ class DatePicker extends dtx.widget.Widget
 	public function new(?d:Date)
 	{
 		super();
+		startDOW = Sunday;
 		hidePicker();
 		fillDOWHeaders();
 		fillMonths();
@@ -171,14 +172,14 @@ class DatePicker extends dtx.widget.Widget
 
 		// Update Month view
 		var daysInMonth = v.numDaysInThisMonth();
-		var firstDayOfM = Date.fromTime(v.getTime().snap("month", -1));
-		var firstDayToDraw = 
+		var firstDayOfM = Date.fromTime(v.getTime().snap(Month, Down));
+		var firstDayToDraw:Date = 
 			if (firstDayOfM.getDay() == startDOW) 
 				// go back one week, so we have a row full of last weeks options
 				firstDayOfM.deltaWeek(-1);
 			else 
 				// snap to the first Day Of Week, and let the snap function know that that happens to be the 1st DOW.
-				Date.fromTime(firstDayOfM.getTime().snapToWeekDay(Culture.defaultCulture.date.days[startDOW], startDOW));
+				Date.fromTime( firstDayOfM.getTime().snapToWeekDay(startDOW,Down) );
 
 		// Unhighlight previous ".active" for selected date
 		monthView.find(".active").removeClass("active");
@@ -223,7 +224,7 @@ class DatePicker extends dtx.widget.Widget
 	// fill the days of week headers
 	function fillDOWHeaders()
 	{
-		var i = startDOW;
+		var i:Int = startDOW;
 		var names = Culture.defaultCulture.date.shortDays;
 		var days = new StringBuf();
 		for (t in 0...7)
