@@ -67,9 +67,7 @@ class Select<T> extends dtx.widget.Widget
 	}
 
 	function set_value( v:T ) {
-		trace ('Set value $id');
 		for ( o in options ) {
-			if (v==o.value) trace (' $v == ${o.value}' );
 			o.selected = ( v == o.value );
 		}
 		#if js this.change(); #end
