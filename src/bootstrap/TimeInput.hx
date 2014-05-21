@@ -1,20 +1,19 @@
 package bootstrap;
 
 using Detox;
-using ufront.util.TimeOfDayTools;
-using Dates;
 
 @:skipTemplating
 class TimeInput extends NumberInput
 {
-	public function new(?min:TimeOfDay=0, ?max:TimeOfDay=86400, ?step:TimeOfDay=300, ?start:TimeOfDay=null, ?placeholder="")
+	public function new(?min:Int=0, ?max:Int=86400, ?step:Int=300, ?start:Int=null, ?placeholder="")
 	{
 		super(min, max, step, start, placeholder);
 		this.setAttr("type","text");
 	}
 
 	override function format(v:Float):String {
-		return Std.int(v).timeToString();
+		var timestamp = DateTools.seconds( v );
+		return DateTools.format( Date.fromTime(timestamp), "%r" );
 	}
 
 	override function parse(v:String):Float {
