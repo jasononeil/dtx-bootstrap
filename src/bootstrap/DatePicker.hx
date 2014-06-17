@@ -147,7 +147,7 @@ class DatePicker extends dtx.widget.Widget
 		date = v;
 
 		// Update the input to show the new date
-		input.setVal(v.weekDayNameShort() + " " + v.dateShort());
+		input.setVal(formatDate(v));
 
 		// Update the view too
 		viewDate = v;
@@ -155,6 +155,11 @@ class DatePicker extends dtx.widget.Widget
 		input.change();
 
 		return date;
+	}
+
+	public dynamic function formatDate(d:Date):String
+	{
+		return d.weekDayNameShort() + " " + d.dateShort();
 	}
 
 	function set_viewDate(v:Date)
