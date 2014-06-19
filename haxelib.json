@@ -5,8 +5,8 @@
   "tags": ["js","bootstrap","detox","dtx","widgets","components","interface","web"],
   "description": "A set of detox widgets that let you easily work with Bootstrap and Bootstrap styled components.",
   "contributors": ["jason"],
-  "releasenote": "Small fixes",
-  "version": "0.0.0-alpha.2",
+  "releasenote": "More minor changes",
+  "version": "0.0.0-alpha.3",
   "url": "https://github.com/jasononeil/dtx-bootstrap",
   "dependencies": {
     "detox": ""
