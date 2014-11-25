@@ -1,0 +1,14 @@
+<div class="accordion" id="$accordianID">
+	<dtx:loop dtx-name="sectionLoop" type="section:bootstrap.Accordian.AccordianSection">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" dtx-class-collapsed="section.collapsed" href="javascript:void(0)" dtx-on-click="section.collapsed=!section.collapsed; this.section=section;">
+					${section.name}
+				</a>
+			</div>
+			<div class="accordion-body collapse" dtx-class-in="!section.collapsed">
+				<div class="accordion-inner" dtx-name="contentContainer"></div>
+			</div>
+		</div>
+	</dtx:loop>
+</div>
