@@ -53,6 +53,11 @@ class Select<T> extends dtx.widget.Widget
 			}
 		#end
 	}
+	
+	public function setOptionsFromMap( options:Map<String,T> ) {
+		var labels = [ for (l in options.keys()) l ];
+		setOptions( options, labels );
+	}
 
 	public function setOptions( values:Iterable<T>, ?labels:Iterable<String> ) {
 		if ( values != null ) {
@@ -79,7 +84,7 @@ class Select<T> extends dtx.widget.Widget
 	}
 
 	function set_values( v:Iterable<T> ) {
-		for ( o in options ) 
+		for ( o in options )
 			o.selected = v.has(o.value);
 		return v;
 	}
@@ -113,7 +118,7 @@ class Option<T> extends dtx.widget.Widget {
 		this.value = value;
 	}
 
-	#if js 
+	#if js
 		inline function get_selected() return option.selected;
 		inline function set_selected(v) return option.selected = v;
 	#else
@@ -135,7 +140,7 @@ class Option<T> extends dtx.widget.Widget {
 		{
 			var v = vIter.next();
 			var label = (labels != null && lIter.hasNext()) ? lIter.next() : Std.string(v);
-			
+
 			var valueStr = useIntValues ? '$i' : '$v';
 			var o = new Option(valueStr, label, v);
 			selectNode.append( o );
