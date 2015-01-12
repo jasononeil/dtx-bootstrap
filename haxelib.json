@@ -5,10 +5,12 @@
   "tags": ["js","bootstrap","detox","dtx","widgets","components","interface","web"],
   "description": "A set of detox widgets that let you easily work with Bootstrap and Bootstrap styled components.",
   "contributors": ["jason"],
-  "releasenote": "Add accordian, other small changes",
-  "version": "0.0.0-alpha.4",
+  "releasenote": "Updates for new thx.",
+  "version": "0.0.0-alpha.5",
   "url": "https://github.com/jasononeil/dtx-bootstrap",
   "dependencies": {
-    "detox": ""
+    "detox": "",
+    "thx.core": "",
+    "thx.format": ""
   }
 }

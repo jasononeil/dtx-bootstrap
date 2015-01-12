@@ -4,7 +4,8 @@ import js.html.EventListener;
 import bootstrap.Button;
 import thx.culture.Culture;
 using Lambda;
-using Dates;
+using thx.core.Dates;
+using thx.format.DateFormat;
 using Detox;
 
 class DatePicker extends dtx.widget.Widget
@@ -58,12 +59,12 @@ class DatePicker extends dtx.widget.Widget
 		// Set up the left / right events
 		//
 
-		nextMonth.click(function (e) { viewDate = viewDate.deltaMonth(1); });
-		prevMonth.click(function (e) { viewDate = viewDate.deltaMonth(-1); });
-		nextYear.click(function (e) { viewDate = viewDate.deltaYear(1); });
-		prevYear.click(function (e) { viewDate = viewDate.deltaYear(-1); });
-		nextDecade.click(function (e) { viewDate = viewDate.deltaYear(10); });
-		prevDecade.click(function (e) { viewDate = viewDate.deltaYear(-10); });
+		nextMonth.click(function (e) viewDate = viewDate.jump(Month,1));
+		prevMonth.click(function (e) viewDate = viewDate.jump(Month,-1));
+		nextYear.click(function (e) viewDate = viewDate.jump(Year,1));
+		prevYear.click(function (e) viewDate = viewDate.jump(Year,-1));
+		nextDecade.click(function (e) viewDate = viewDate.jump(Year,10));
+		prevDecade.click(function (e) viewDate = viewDate.jump(Year,-10));
 
 		//
 		// Set up the view changing events
@@ -159,7 +160,7 @@ class DatePicker extends dtx.widget.Widget
 
 	public dynamic function formatDate(d:Date):String
 	{
-		return d.weekDayNameShort() + " " + d.dateShort();
+		return d.format("ddd") + " " + d.dateShort();
 	}
 
 	function set_viewDate(v:Date)
@@ -169,22 +170,22 @@ class DatePicker extends dtx.widget.Widget
 		var startOfDecade = year - (year % 10);
 		var endOfDecade = startOfDecade + 9;
 		decadeTitle.setText('$startOfDecade - $endOfDecade');
-		yearTitle.setText(v.year());
-		monthTitle.setText(v.yearMonth());
+		yearTitle.setText(v.format("yyyy"));
+		monthTitle.setText(v.format("MMMM yyyy"));
 
 		// Update Decade view
 		fillYears(startOfDecade, endOfDecade);
 
 		// Update Month view
 		var daysInMonth = v.numDaysInThisMonth();
-		var firstDayOfM = Date.fromTime(v.getTime().snap(Month, Down));
+		var firstDayOfM = v.snapPrev(Month);
 		var firstDayToDraw:Date = 
 			if (firstDayOfM.getDay() == startDOW) 
 				// go back one week, so we have a row full of last weeks options
-				firstDayOfM.deltaWeek(-1);
+				firstDayOfM.jump(Week,-1);
 			else 
 				// snap to the first Day Of Week, and let the snap function know that that happens to be the 1st DOW.
-				Date.fromTime( firstDayOfM.getTime().snapToWeekDay(startDOW,Down) );
+				Date.fromTime( firstDayOfM.getTime().snapPrevWeekDay(startDOW) );
 
 		// Unhighlight previous ".active" for selected date
 		monthView.find(".active").removeClass("active");
@@ -230,7 +231,7 @@ class DatePicker extends dtx.widget.Widget
 	function fillDOWHeaders()
 	{
 		var i:Int = startDOW;
-		var names = Culture.defaultCulture.date.shortDays;
+		var names = Culture.invariant.dateTime.nameDaysAbbreviated;
 		var days = new StringBuf();
 		for (t in 0...7)
 		{
@@ -245,7 +246,7 @@ class DatePicker extends dtx.widget.Widget
 	function fillMonths()
 	{
 		var months = new StringBuf();
-		for (m in Culture.defaultCulture.date.abbrMonths)
+		for (m in Culture.invariant.dateTime.nameMonthsAbbreviated)
 		{
 			if (m != "") months.add('<span class="month">$m</span>');
 		}

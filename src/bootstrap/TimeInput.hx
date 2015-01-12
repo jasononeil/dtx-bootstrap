@@ -1,7 +1,8 @@
 package bootstrap;
 
 using Detox;
-using Dates;
+using thx.core.Dates;
+using thx.format.DateFormat;
 
 @:skipTemplating
 class TimeInput extends NumberInput
@@ -13,9 +14,9 @@ class TimeInput extends NumberInput
 	}
 
 	override function format(v:Float):String {
-		var timestamp = Date.now().getTime().snap(Day,Down)+(v*1000);
+		var timestamp = Date.now().getTime().snapPrev(Day)+(v*1000);
 		var date = Date.fromTime(timestamp);
-		return date.format([ "C", "%I:%M%p" ]);
+		return date.format("%I:%M%p");
 	}
 
 	var parseRegex = ~/([012]?\d):([0-5]\d) ?(PM|AM)/;

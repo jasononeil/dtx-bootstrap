@@ -1,7 +1,7 @@
 package bootstrap;
 
 using Detox;
-using Floats;
+using thx.format.NumberFormat;
 
 @:skipTemplating
 class IntInput extends NumberInput
@@ -13,7 +13,7 @@ class IntInput extends NumberInput
 
 	override function format(i:Float):String
 	{
-		return i.format("I");
+		return i.integer();
 	}
 
 	override function parse(i:String):Float
