@@ -34,11 +34,11 @@ class DatePicker extends dtx.widget.Widget
 		dateBtns = getDateButtons();
 		currentView = Month;
 		date = if (d!=null) d else Date.now();
-		
+
 		//
 		// Set up open / close events
 		//
-		
+
 		// Toggle on clicking the input field
 		field.children().click(function (e) {
 			if (pickerOpen) hidePicker() else showPicker();
@@ -55,7 +55,7 @@ class DatePicker extends dtx.widget.Widget
 			}
 		});
 
-		// 
+		//
 		// Set up the left / right events
 		//
 
@@ -93,12 +93,12 @@ class DatePicker extends dtx.widget.Widget
 			var newDayOfMonth = Std.parseInt(n.text());
 			var newMonth = viewDate.getMonth();
 			var newYear = viewDate.getFullYear();
-			if (n.hasClass("old")) 
+			if (n.hasClass("old"))
 			{
 				newMonth--;
 				if (newMonth < 0) { newMonth = newMonth + 12; newYear--; }
 			}
-			if (n.hasClass("new")) 
+			if (n.hasClass("new"))
 			{
 				newMonth++;
 				if (newMonth > 11) { newMonth = newMonth - 12; newYear++; }
@@ -231,7 +231,7 @@ class DatePicker extends dtx.widget.Widget
 	function fillDOWHeaders()
 	{
 		var i:Int = startDOW;
-		var names = Culture.invariant.dateTime.nameDaysAbbreviated;
+		var names = Culture.invariant.dateTime.nameDaysShortest;
 		var days = new StringBuf();
 		for (t in 0...7)
 		{
