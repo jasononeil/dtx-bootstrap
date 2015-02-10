@@ -24,6 +24,7 @@ class FormFieldInput extends dtx.widget.Widget
 	public var grid(default,set):Null<Int> = null;
 	public var inlineField = false;
 	public var autocomplete(default, set):Bool;
+	public var autofocus(default, set):Bool;
 	public var inputBefore(default, set):String;
 	public var inputAfter(default, set):String;
 	var useInputGroups:Bool = false;
@@ -38,6 +39,7 @@ class FormFieldInput extends dtx.widget.Widget
 		this.type = type;
 		this.help = null;
 		this.disabled = false;
+		this.autofocus = false;
 	}
 
 	function set_size(s:InputSize)
@@ -62,6 +64,13 @@ class FormFieldInput extends dtx.widget.Widget
 		var input = (useInputGroups) ? this.inputGroup : this.inputNode;
 		if (d) input.setAttr("disabled","disabled") else input.removeAttr("disabled");
 		return disabled = d;
+	}
+
+	function set_autofocus(a:Bool)
+	{
+		if (a) inputNode.setAttr( 'autofocus', 'autofocus' );
+		else inputNode.removeAttr( 'autofocus' );
+		return autofocus = a;
 	}
 
 	function set_autocomplete(a:Bool)

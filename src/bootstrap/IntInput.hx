@@ -13,7 +13,7 @@ class IntInput extends NumberInput
 
 	override function format(i:Float):String
 	{
-		return i.integer();
+		return i.integer( culture );
 	}
 
 	override function parse(i:String):Float

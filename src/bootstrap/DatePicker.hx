@@ -10,6 +10,8 @@ using Detox;
 
 class DatePicker extends dtx.widget.Widget
 {
+	public var culture:Culture = DtxBootstrapSetup.defaultCulture;
+
 	public var pickerOpen(default,null) = false;
 	public var currentView(default,set):DatePickerView;
 
@@ -160,7 +162,7 @@ class DatePicker extends dtx.widget.Widget
 
 	public dynamic function formatDate(d:Date):String
 	{
-		return d.format("ddd") + " " + d.dateShort();
+		return d.format("ddd", culture) + " " + d.dateShort(culture);
 	}
 
 	function set_viewDate(v:Date)
@@ -170,8 +172,8 @@ class DatePicker extends dtx.widget.Widget
 		var startOfDecade = year - (year % 10);
 		var endOfDecade = startOfDecade + 9;
 		decadeTitle.setText('$startOfDecade - $endOfDecade');
-		yearTitle.setText(v.format("yyyy"));
-		monthTitle.setText(v.format("MMMM yyyy"));
+		yearTitle.setText(v.format("yyyy",culture));
+		monthTitle.setText(v.format("MMMM yyyy",culture));
 
 		// Update Decade view
 		fillYears(startOfDecade, endOfDecade);
@@ -231,7 +233,7 @@ class DatePicker extends dtx.widget.Widget
 	function fillDOWHeaders()
 	{
 		var i:Int = startDOW;
-		var names = Culture.invariant.dateTime.nameDaysShortest;
+		var names = culture.dateTime.nameDaysShortest;
 		var days = new StringBuf();
 		for (t in 0...7)
 		{
@@ -246,7 +248,7 @@ class DatePicker extends dtx.widget.Widget
 	function fillMonths()
 	{
 		var months = new StringBuf();
-		for (m in Culture.invariant.dateTime.nameMonthsAbbreviated)
+		for (m in culture.dateTime.nameMonthsAbbreviated)
 		{
 			if (m != "") months.add('<span class="month">$m</span>');
 		}

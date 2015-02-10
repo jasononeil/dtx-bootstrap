@@ -5,11 +5,18 @@ For example, we can put the event listeners that trigger all tooltips here.
 To run all the setups, call setupAll();
 */
 
+import thx.culture.Culture;
 using Detox;
 using bootstrap.Tooltip;
 
 class DtxBootstrapSetup
 {
+	/**
+		The default culture that will be used for things such as formatting dates or numbers.
+		Any object which requires culture-based formatting will have a `culture` property, which will be set to this value on instantiation.
+	**/
+	public static var defaultCulture:Culture = Culture.invariant;
+
 	/** Call all the other setups. */
 	public static function setupAll()
 	{

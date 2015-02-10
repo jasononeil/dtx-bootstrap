@@ -16,7 +16,7 @@ class TimeInput extends NumberInput
 	override function format(v:Float):String {
 		var timestamp = Date.now().getTime().snapPrev(Day)+(v*1000);
 		var date = Date.fromTime(timestamp);
-		return date.format("%I:%M%p");
+		return date.format("%I:%M%p", culture);
 	}
 
 	var parseRegex = ~/([012]?\d):([0-5]\d) ?(PM|AM)/;

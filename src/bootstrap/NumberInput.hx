@@ -1,11 +1,14 @@
 package bootstrap;
 
+import thx.culture.Culture;
 using StringTools;
 using Detox;
 
 @:template("<input type='number' min='$min' max='$max' step='$step' placeholder='$placeholder'></input>")
 class NumberInput extends dtx.widget.Widget
 {
+	public var culture:Culture = DtxBootstrapSetup.defaultCulture;
+
 	public var min:Null<Float>;
 	public var max:Null<Float>;
 	public var step:Null<Float>;
