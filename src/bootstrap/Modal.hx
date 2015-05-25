@@ -51,7 +51,7 @@ class Modal extends dtx.widget.Widget
     this.title = title;
     this.content = content;
     this.width = width;
-    
+
     closeBtn.click(function (e) dismiss());
     dismissBtn.click(function (e) dismiss());
     acceptBtn.click(function (e) accept());
@@ -61,7 +61,7 @@ class Modal extends dtx.widget.Widget
   {
     if (w == null) this.setAttr("style", "display: block");
     else this.setAttr("style", 'display: block; width: ${w}px; margin-left: -${w/2}px');
-    
+
     return width = w;
   }
 
@@ -72,11 +72,7 @@ class Modal extends dtx.widget.Widget
     this.appendTo(js.Browser.document.body);
 
     // Events to escape
-    js.Browser.document.on("keyup.escapeModal", function (e) {
-      var keyEvent:js.html.KeyboardEvent = cast e;
-      if (keyEvent.which == 27) dismiss();
-      if (keyEvent.which == 13) accept();
-    });
+    js.Browser.document.on("keyup.escapeModal", respondToKeyPress);
     backdrop.click(function (e)
     {
       // They clicked on this exact div
@@ -87,10 +83,17 @@ class Modal extends dtx.widget.Widget
     });
   }
 
+  function respondToKeyPress(e) {
+    var keyEvent:js.html.KeyboardEvent = cast e;
+    if (keyEvent.which == 27) dismiss();
+    if (keyEvent.which == 13) accept();
+  }
+
   function hide()
   {
     ModalBackdrop.removeBackdrop();
     this.removeClass("in").addClass("fade out");
+    js.Browser.document.off("keyup.escapeModal", respondToKeyPress);
     haxe.Timer.delay(function () {
       this.removeFromDOM();
     }, 200);
@@ -110,11 +113,11 @@ class Modal extends dtx.widget.Widget
     this.trigger("ModalClose");
   }
 
-  public function addButton( b:Button, ?pos=-1 ) 
+  public function addButton( b:Button, ?pos=-1 )
   {
     if ( pos==-1 )
       return this.footer.append( b );
-    else 
+    else
       return this.footer.children().getNode( pos ).beforeThisInsert( b );
   }
 
@@ -125,7 +128,7 @@ class Modal extends dtx.widget.Widget
 }
 
 @:template('<div class="modal-backdrop fade"></div>')
-class ModalBackdrop extends dtx.widget.Widget 
+class ModalBackdrop extends dtx.widget.Widget
 {
   function new()
   {
